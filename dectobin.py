@@ -49,4 +49,4 @@ def decIP(ip):
     return res
 
 
-print(decIP('172.18.188.35'))
+print(decIP('7.202.146.23'))
