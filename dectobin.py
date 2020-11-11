@@ -1,5 +1,24 @@
-def toDec(num):
-    i = num
+import sys
+
+try:
+    getArgs = sys.argv[1]
+except IndexError:
+    getArgs = 'null'
+if getArgs=='null':
+    print('Please use "dectobin help"')
+elif sys.argv[1] == 'help':
+    print("""
+        Script usage:
+            To convert decimal number in range of 0 to 255 type "dectobin num <number>"
+            To convert decimal ip to binary type "dectobin ip <ip_address>" 
+    """)
+# else:
+#     print('sysargv1 ', sys.argv[1])
+
+
+
+def toBin(num):
+    i = int(num)
     dec=""
     while i >=1:
         
@@ -35,18 +54,21 @@ def toDec(num):
 def decIP(ip):
     ipList = ip.split('.')
     
-    print(ipList)
+    # print(ipList)
     res=''
     i=0
     while i < len(ip.split('.')):
         
         if i ==3:
-            res = res + str(toDec(int(ip.split('.')[i])))
+            res = res + str(toBin(int(ip.split('.')[i])))
         else:
-            res = res + str(toDec(int(ip.split('.')[i]))) + '.'
+            res = res + str(toBin(int(ip.split('.')[i]))) + '.'
         i+=1
     
     return res
 
-
-print(decIP('7.202.146.23'))
+if sys.argv[1] == 'ip':
+    print(decIP(sys.argv[2]))
+    # print(decIP('7.202.146.23'))
+elif sys.argv[1] == 'num':
+    print(toBin(sys.argv[2]))
